@@ -11,7 +11,7 @@
       "Dutch"
     ],
     "title": "Front End Developer",
-    "bio": "I build thoughtful web experiences with clean code and attention to detail.",
+    "bio": "I am a web developer with a love for building front-end interactive experiences and games.",
     "location": "Antwerp, Belgium",
     "avatar": null
   },
@@ -35,32 +35,23 @@
     "Vue",
     "Node.js",
     "Vite",
-    "php",
-    "mysql",
-    "laravel",
-    "unity",
-    "unreal engine"
+    "PHP",
+    "MySQL",
+    "Laravel",
+    "Unity",
+    "Unreal Engine"
   ],
   "projects": [
     {
-      "name": "Project One",
-      "description": "A short description of what this project does and why it matters.",
+      "name": "Train Simulator",
+      "description": "A train simulator game built with Three.js, assisted by AI. The game allows you to drive a train, stop at stations and pick up passengers. (best played using a throttle and joystick controller)",
       "tags": [
-        "JavaScript",
-        "Vite"
+        "WebGL",
+        "Three.js",
+        "AI"
       ],
-      "url": "https://github.com/ella/project-one",
-      "demo": null
-    },
-    {
-      "name": "Project Two",
-      "description": "Another project showcasing a different skill or interest area.",
-      "tags": [
-        "React",
-        "API"
-      ],
-      "url": "https://github.com/ella/project-two",
-      "demo": "https://example.com"
+      "url": "https://github.com/bartbarto/train-zimulator",
+      "demo": "https://trainsim.ella.top"
     }
   ],
   "experience": [
@@ -68,7 +59,7 @@
       "role": "Full Stack Developer",
       "company": "Artcore Society",
       "period": "2015 — Present",
-      "description": "Building and shipping web applications. Creating interactive websites and experiences for various clients. "
+      "description": "Building and shipping web applications. Creating interactive websites and experiences for various clients. \n Consultancy for a number of Antwerp based agencies."
     },
     {
       "role": ".NET Developer, Front End Developer",
