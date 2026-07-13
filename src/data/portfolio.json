@@ -1,0 +1,81 @@
+{
+  "meta": {
+    "title": "Ella — Portfolio",
+    "description": "Developer portfolio"
+  },
+  "profile": {
+    "name": "Ella",
+    "pronouns": "they/them",
+    "languages": [
+      "English",
+      "Dutch"
+    ],
+    "title": "Front End Developer",
+    "bio": "I build thoughtful web experiences with clean code and attention to detail.",
+    "location": "Antwerp, Belgium",
+    "avatar": null
+  },
+  "links": [
+    {
+      "label": "GitHub",
+      "url": "https://github.com/bartbarto",
+      "icon": "github"
+    },
+    {
+      "label": "Email",
+      "url": "mailto:hello@ella.top",
+      "icon": "email"
+    }
+  ],
+  "skills": [
+    "JavaScript",
+    "TypeScript",
+    "HTML",
+    "CSS",
+    "Vue",
+    "Node.js",
+    "Vite",
+    "php",
+    "mysql",
+    "laravel",
+    "unity",
+    "unreal engine"
+  ],
+  "projects": [
+    {
+      "name": "Project One",
+      "description": "A short description of what this project does and why it matters.",
+      "tags": [
+        "JavaScript",
+        "Vite"
+      ],
+      "url": "https://github.com/ella/project-one",
+      "demo": null
+    },
+    {
+      "name": "Project Two",
+      "description": "Another project showcasing a different skill or interest area.",
+      "tags": [
+        "React",
+        "API"
+      ],
+      "url": "https://github.com/ella/project-two",
+      "demo": "https://example.com"
+    }
+  ],
+  "experience": [
+    {
+      "role": "Full Stack Developer",
+      "company": "Artcore Society",
+      "period": "2015 — Present",
+      "description": "Building and shipping web applications. Creating interactive websites and experiences for various clients. "
+    },
+    {
+      "role": ".NET Developer, Front End Developer",
+      "company": "Elia Group",
+      "type": "Consultancy, Full Time",
+      "period": "2022 — 2024",
+      "description": "In my initial role at Elia, I was responsible for updating their matterport 3d scans, scanning new buildings and integrating interactive elements into the scans. Later on, I was part of the IoT team where I built interactive dashboards and websites for visualizing and controlling IoT devices."
+    }
+  ]
+}
