@@ -16,8 +16,8 @@ const STARFIELD = {
 
   drift: { speedMin: 0.01, speedRange: 0.04, rate: 0.00004 },
 
-  color: { r: 0.86, g: 0.9, b: 1.0 },
-  edgeSoftness: 0.08,
+  color: { r: 0.95, g: 0.97, b: 1.0 },
+  edgeSoftness: 0.12,
 };
 
 const STRIDE = 7; // x, y, size, opacity, twinkle, phase, drift
@@ -301,9 +301,6 @@ onUnmounted(() => {
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  background:
-    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(94, 234, 212, 0.07), transparent),
-    radial-gradient(ellipse 60% 40% at 90% 20%, rgba(184, 160, 255, 0.06), transparent),
-    linear-gradient(180deg, var(--space-void) 0%, var(--space-deep) 100%);
+  background: var(--chart-bg);
 }
 </style>

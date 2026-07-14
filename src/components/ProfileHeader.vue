@@ -15,21 +15,21 @@ defineProps({
 
 <template>
   <header class="profile">
-    <div class="profile-inner container">
+    <div class="profile-inner">
       <img v-if="profile.avatar" class="avatar" :src="profile.avatar" :alt="profile.name" />
-      <div v-else class="avatar avatar--placeholder glass glass--round" aria-hidden="true">
-        {{ profile.name.charAt(0) }}
+      <div v-else class="avatar avatar--marker chart-panel" aria-hidden="true">
+        <span class="avatar__initial label">{{ profile.name.charAt(0) }}</span>
       </div>
 
       <div class="profile-body">
         <p class="eyebrow">{{ profile.location }}</p>
         <h1>{{ profile.name }}</h1>
-        <p v-if="profile.pronouns" class="meta faint">{{ profile.pronouns }}</p>
-        <p class="title">{{ profile.title }}</p>
-        <p v-if="profile.languages?.length" class="meta faint">
+        <p v-if="profile.pronouns" class="meta faint label">{{ profile.pronouns }}</p>
+        <p class="title label">{{ profile.title }}</p>
+        <p v-if="profile.languages?.length" class="meta faint label">
           {{ profile.languages.join(' · ') }}
         </p>
-        <p class="bio muted">{{ profile.bio }}</p>
+        <p class="bio muted pre-line body-text">{{ profile.bio }}</p>
 
         <nav class="links" aria-label="Social links">
           <LinkPill v-for="link in links" :key="link.url" :href="link.url" :icon="link.icon">
@@ -43,69 +43,82 @@ defineProps({
 
 <style scoped>
 .profile {
-  padding: 4rem 0 2.5rem;
-}
-
-.profile::after {
-  content: '';
-  display: block;
-  height: 1px;
-  margin-top: 2.5rem;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--glass-edge-bright),
-    transparent
-  );
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.04);
+  padding: 2.5rem 0;
 }
 
 .profile-inner {
   display: flex;
-  gap: 1.5rem;
+  gap: 1.75rem;
   align-items: flex-start;
 }
 
 .avatar {
   width: 4.5rem;
   height: 4.5rem;
-  border-radius: 50%;
   object-fit: cover;
   flex-shrink: 0;
+  border: 1px solid var(--chart-line-strong);
 }
 
-.avatar:not(.avatar--placeholder) {
-  border: 1px solid var(--glass-edge);
-  box-shadow: var(--glass-shadow), var(--glass-inset-top);
-}
-
-.avatar--placeholder {
+.avatar--marker {
   display: grid;
   place-items: center;
-  color: var(--accent-violet);
-  font-size: 1.5rem;
+  position: relative;
+  color: var(--chart-ink);
+}
+
+.avatar--marker::before,
+.avatar--marker::after {
+  content: '';
+  position: absolute;
+  background: var(--chart-line-strong);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.avatar--marker::before {
+  top: 50%;
+  left: 12%;
+  right: 12%;
+  height: 1px;
+  transform: translateY(-50%);
+}
+
+.avatar--marker::after {
+  left: 50%;
+  top: 12%;
+  bottom: 12%;
+  width: 1px;
+  transform: translateX(-50%);
+}
+
+.avatar__initial {
+  font-size: 1.25rem;
+  z-index: 1;
 }
 
 .title {
-  margin-top: 0.35rem;
-  color: var(--accent-violet);
-  font-weight: 500;
+  margin-top: 0.5rem;
+  font-size: 0.8125rem;
+  color: var(--chart-ink-dim);
 }
 
 .meta {
-  margin-top: 0.25rem;
-  font-size: 0.9375rem;
+  margin-top: 0.35rem;
+  font-size: 0.6875rem;
 }
 
 .bio {
-  margin-top: 1rem;
+  margin-top: 1.25rem;
+  max-width: 36rem;
+  line-height: 1.65;
 }
 
 .links {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.6rem;
-  margin-top: 1.25rem;
+  gap: 0.5rem;
+  margin-top: 1.35rem;
 }
 
 @media (max-width: 560px) {

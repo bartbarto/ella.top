@@ -1,12 +1,11 @@
 <template>
-  <article class="card glass">
+  <article class="card chart-panel">
     <slot />
   </article>
 </template>
 
 <style scoped>
 .card {
-  padding: 1.25rem;
-  border-radius: var(--radius);
+  padding: 1.25rem 1.35rem;
 }
 </style>

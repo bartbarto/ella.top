@@ -1,112 +1,68 @@
 :root {
-  --space-void: #04040c;
-  --space-deep: #0b0d1a;
-  --space-border: rgba(148, 163, 255, 0.14);
+  /* star chart / cyanotype palette */
+  --chart-bg: #0a1628;
+  --chart-bg-deep: #061018;
+  --chart-ink: #eef1f6;
+  --chart-ink-dim: rgba(238, 241, 246, 0.72);
+  --chart-ink-faint: rgba(238, 241, 246, 0.42);
+  --chart-line: rgba(238, 241, 246, 0.22);
+  --chart-line-strong: rgba(238, 241, 246, 0.55);
+  --chart-line-dash: rgba(238, 241, 246, 0.18);
 
-  --text-star: #eef2ff;
-  --text-dim: #9aa3c7;
-  --text-faint: #6b7394;
+  --text-star: var(--chart-ink);
+  --text-dim: var(--chart-ink-dim);
+  --text-faint: var(--chart-ink-faint);
+  --accent-nebula: var(--chart-ink);
+  --accent-violet: var(--chart-ink-dim);
+  --accent-orbit: var(--chart-ink-dim);
 
-  --accent-nebula: hsl(211, 0.00%, 77.80%);
-  --accent-violet: hsl(255, 0.00%, 81.40%);
-  --accent-orbit: hsl(171, 0%, 64.30%);
+  --font-body: 'Barlow', system-ui, sans-serif;
+  --font-label: 'Barlow Condensed', system-ui, sans-serif;
+  --font-sans: var(--font-body);
 
-  --font-sans: 'DM Sans', system-ui, sans-serif;
-
-  --radius: 14px;
+  --radius: 0;
   --max-width: 68rem;
-
-  /* liquid glass */
-  --glass-blur: 1px;
-  --glass-saturate: 80%;
-  --glass-tint: rgba(220, 180, 255, 0.03);
-  --glass-fill-top: rgba(255, 255, 255, 0.06);
-  --glass-fill-bottom: rgba(255, 255, 255, 0.01);
-  --glass-highlight: rgba(255, 255, 255, 0.1);
-  --glass-edge: rgba(255, 255, 255, 0.1);
-  --glass-edge-bright: rgba(255, 255, 255, 0.22);
-  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
-  --glass-inset-top: inset 0 1px 0 rgba(255, 255, 255, 0.14);
-  --glass-inset-bottom: inset 0 -1px 0 rgba(255, 255, 255, 0.03);
 }
 
-/* shared liquid glass surface */
-.glass {
+/* chart panel frame */
+.chart-panel {
   position: relative;
   isolation: isolate;
-  overflow: hidden;
-  background:
-    linear-gradient(145deg,
-      var(--glass-fill-top) 0%,
-      var(--glass-tint) 38%,
-      var(--glass-fill-bottom) 100%);
-  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
-  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
-  border: 1px solid var(--glass-edge);
-  box-shadow: var(--glass-shadow), var(--glass-inset-top), var(--glass-inset-bottom);
+  overflow: visible;
+  background: rgba(10, 22, 40, 0.55);
+  border: 1px solid var(--chart-line-strong);
+  box-shadow: inset 0 0 0 1px rgba(238, 241, 246, 0.06);
 }
 
-.glass::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: linear-gradient(180deg,
-      var(--glass-highlight) 0%,
-      rgba(255, 255, 255, 0.02) 28%,
-      transparent 55%);
-  pointer-events: none;
+
+.chart-panel::after {
+  content: none;
 }
 
-.glass::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 8%;
-  right: 8%;
-  height: 1px;
-  border-radius: inherit;
-  background: linear-gradient(90deg,
-      transparent,
-      var(--glass-edge-bright),
-      transparent);
-  pointer-events: none;
-}
-
-.glass>* {
+.chart-panel>* {
   position: relative;
   z-index: 1;
 }
 
-.glass--pill {
-  --glass-blur: 20px;
-  border-radius: 999px;
+.chart-panel--link,
+.chart-panel--tag {
+  border-radius: 0;
 }
 
-.glass--tag {
-  --glass-blur: 16px;
-  border-radius: 6px;
-}
-
-.glass--round {
-  border-radius: 50%;
-}
-
-.glass-divider {
-  height: 1px;
+.chart-divider {
+  height: 0;
   border: none;
-  background: linear-gradient(90deg,
-      transparent,
-      var(--glass-edge-bright),
-      transparent);
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.04);
+  border-top: 1px dashed var(--chart-line-strong);
+  margin: 0;
+  box-shadow: none;
 }
 
 body {
-  font-family: var(--font-sans);
+  font-family: var(--font-body);
   font-size: 1rem;
-  color: var(--text-star);
-  background: var(--space-void);
+  font-weight: 400;
+  color: var(--chart-ink);
+  background: var(--chart-bg-deep);
 }
 
 #app {
@@ -122,44 +78,84 @@ body {
   flex: 1;
   display: flex;
   flex-direction: column;
+
+  &:before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100dvh;
+    border: 25px solid var(--chart-bg);
+    z-index: 5;
+  }
 }
 
 .container {
   width: 100%;
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 0 1.25rem;
+  padding: 0 2.5rem;
+}
+
+.label {
+  font-family: var(--font-label);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
 }
 
 .eyebrow {
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: var(--accent-orbit);
+  font-family: var(--font-label);
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--chart-ink-faint);
 }
 
 h1 {
-  font-size: clamp(2rem, 5vw, 3rem);
-  font-weight: 600;
-  letter-spacing: -0.02em;
+  font-family: var(--font-label);
+  font-size: clamp(1.85rem, 4.5vw, 2.85rem);
+  font-weight: 400;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
   line-height: 1.15;
 }
 
 h2 {
-  font-size: 1.25rem;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  color: var(--text-star);
+  font-family: var(--font-label);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--chart-ink);
+  border-bottom: 1px solid var(--chart-line-strong);
+  padding-bottom: 0.5rem;
 }
 
 h3 {
-  font-size: 1.05rem;
-  font-weight: 600;
+  font-family: var(--font-label);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
 .muted {
-  color: var(--text-dim);
+  color: var(--chart-ink-dim);
 }
 
 .faint {
-  color: var(--text-faint);
+  color: var(--chart-ink-faint);
+}
+
+.pre-line {
+  white-space: pre-line;
+}
+
+.body-text {
+  font-family: var(--font-body);
+  text-transform: none;
+  letter-spacing: normal;
+  line-height: 1.65;
 }

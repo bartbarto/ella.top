@@ -1,7 +1,7 @@
 {
   "meta": {
-    "title": "Ella — Portfolio",
-    "description": "Developer portfolio"
+    "title": "Ella's Portfolio",
+    "description": "Ella: Front End Developer"
   },
   "profile": {
     "name": "Ella",
@@ -11,7 +11,7 @@
       "Dutch"
     ],
     "title": "Front End Developer",
-    "bio": "I am a web developer with a love for building front-end interactive experiences and games.",
+    "bio": "I am a web developer with a love for building front-end interactive experiences and games.\n I enjoy building games and experimenting with new technologies.\n\n AR/VR enthusiast.",
     "location": "Antwerp, Belgium",
     "avatar": null
   },

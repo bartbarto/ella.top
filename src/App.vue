@@ -2,9 +2,10 @@
 import { onMounted } from 'vue';
 import portfolio from './data/portfolio.json';
 import Starfield from './components/Starfield.vue';
+import ChartFrame from './components/ChartFrame.vue';
 import ProfileHeader from './components/ProfileHeader.vue';
 import Section from './components/Section.vue';
-import Tag from './components/Tag.vue';
+import SkillTag from './components/SkillTag.vue';
 import ProjectCard from './components/ProjectCard.vue';
 import ExperienceCard from './components/ExperienceCard.vue';
 import SiteFooter from './components/SiteFooter.vue';
@@ -29,15 +30,16 @@ onMounted(() => {
 
 <template>
   <Starfield />
+  <ChartFrame />
 
   <div class="page">
-    <ProfileHeader :profile="profile" :links="links" />
-
+    
     <main class="container">
+      <ProfileHeader :profile="profile" :links="links" />
       <Section id="skills-heading" title="Skills">
         <ul class="skills">
           <li v-for="skill in skills" :key="skill">
-            <Tag>{{ skill }}</Tag>
+            <SkillTag :label="skill" />
           </li>
         </ul>
       </Section>

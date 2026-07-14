@@ -14,12 +14,12 @@ defineProps({
     <div class="header">
       <div>
         <h3>{{ item.role }}</h3>
-        <p class="company">{{ item.company }}</p>
-        <p v-if="item.type" class="type faint">{{ item.type }}</p>
+        <p class="company label">{{ item.company }}</p>
+        <p v-if="item.type" class="type faint label">{{ item.type }}</p>
       </div>
-      <time class="faint">{{ item.period }}</time>
+      <time class="faint label">{{ item.period }}</time>
     </div>
-    <p class="muted">{{ item.description }}</p>
+    <p class="muted pre-line body-text">{{ item.description }}</p>
   </Card>
 </template>
 
@@ -29,22 +29,30 @@ defineProps({
   justify-content: space-between;
   align-items: flex-start;
   gap: 1rem;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.85rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px dashed var(--chart-line);
 }
 
 .company {
-  margin-top: 0.2rem;
-  font-size: 0.9rem;
-  color: var(--accent-orbit);
+  margin-top: 0.35rem;
+  font-size: 0.75rem;
+  color: var(--chart-ink-dim);
+}
+
+.type {
+  margin-top: 0.25rem;
+  font-size: 0.6875rem;
 }
 
 time {
   flex-shrink: 0;
-  font-size: 0.875rem;
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
 }
 
-p {
-  font-size: 0.9rem;
+p.body-text {
+  font-size: 0.9375rem;
 }
 
 @media (max-width: 560px) {
