@@ -44,7 +44,7 @@ onMounted(() => {
         </ul>
       </Section>
 
-      <Section id="projects-heading" title="Projects" show-divider>
+      <Section id="projects-heading" title="Recent Projects" show-divider>
         <div class="grid">
           <ProjectCard v-for="project in projects" :key="project.url" :project="project" />
         </div>
@@ -59,9 +59,9 @@ onMounted(() => {
           />
         </div>
       </Section>
+      <SiteFooter :name="profile.name" :year="year" />
     </main>
 
-    <SiteFooter :name="profile.name" :year="year" />
   </div>
 </template>
 

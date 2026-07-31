@@ -11,6 +11,10 @@ defineProps({
     default: 'link',
   },
 });
+
+function linkText(href) {
+  return href.replace(/^[a-zA-Z][a-zA-Z0-9+.-]*:(\/\/)?/, '');
+}
 </script>
 
 <template>
@@ -18,6 +22,7 @@ defineProps({
     class="link-pill chart-panel chart-panel--link label"
     :href="href"
     target="_blank"
+    :data-link="linkText(href)"
     rel="noopener noreferrer"
   >
     <Icon :name="icon" />

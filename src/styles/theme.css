@@ -1,7 +1,8 @@
 :root {
   /* star chart / cyanotype palette */
-  --chart-bg: #0a1628;
-  --chart-bg-deep: #061018;
+  --chart-bg: #0a163c;
+  --chart-bg-deep: #0a163c;
+  --chart-bg-transparent: rgba(10, 22, 60, 0.5);
   --chart-ink: #eef1f6;
   --chart-ink-dim: rgba(238, 241, 246, 0.72);
   --chart-ink-faint: rgba(238, 241, 246, 0.42);
@@ -29,7 +30,8 @@
   position: relative;
   isolation: isolate;
   overflow: visible;
-  background: rgba(10, 22, 40, 0.55);
+  background: var(--chart-bg-transparent);
+  backdrop-filter: blur(1px);
   border: 1px solid var(--chart-line-strong);
   box-shadow: inset 0 0 0 1px rgba(238, 241, 246, 0.06);
 }
@@ -88,6 +90,7 @@ body {
     height: 100dvh;
     border: 25px solid var(--chart-bg);
     z-index: 5;
+    pointer-events: none;
   }
 }
 

@@ -1,0 +1,26 @@
+@media print {
+
+	:root {
+		--chart-bg: #ffffff;
+		--chart-bg-deep: #ffffff;
+		--chart-ink: #000000;
+		--chart-ink-dim: #000000;
+		--chart-ink-faint: #000000;
+		--chart-line: #000000;
+		--chart-line-strong: #000000;
+		--chart-line-dash: #000000;
+	}
+
+	.link-pill {
+		font-size: 0 !important;
+	}
+
+	.link-pill::after {
+		content: attr(data-link);
+		font-size: 0.75rem !important;
+	}
+
+	.chart-panel {
+		background: none !important;
+	}
+}

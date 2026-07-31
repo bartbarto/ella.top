@@ -16,9 +16,13 @@ defineProps({
 <template>
   <header class="profile">
     <div class="profile-inner">
-      <img v-if="profile.avatar" class="avatar" :src="profile.avatar" :alt="profile.name" />
+      <img
+        v-if="profile.avatar"
+        class="avatar chart-panel"
+        :src="profile.avatar"
+        :alt="profile.name"
+      />
       <div v-else class="avatar avatar--marker chart-panel" aria-hidden="true">
-        <span class="avatar__initial label">{{ profile.name.charAt(0) }}</span>
       </div>
 
       <div class="profile-body">
@@ -49,14 +53,20 @@ defineProps({
 .profile-inner {
   display: flex;
   gap: 1.75rem;
-  align-items: flex-start;
+  /* align-items: flex-start; */
+
+  /* flex-direction: column;
+    align-items: center;
+    text-align: center; */
 }
 
 .avatar {
-  width: 4.5rem;
-  height: 4.5rem;
+  width: 5.5rem;
+  height: 5.5rem;
   object-fit: cover;
   flex-shrink: 0;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
   border: 1px solid var(--chart-line-strong);
 }
 
@@ -110,7 +120,6 @@ defineProps({
 
 .bio {
   margin-top: 1.25rem;
-  max-width: 36rem;
   line-height: 1.65;
 }
 
@@ -119,6 +128,7 @@ defineProps({
   flex-wrap: wrap;
   gap: 0.5rem;
   margin-top: 1.35rem;
+  /* justify-content: center; */
 }
 
 @media (max-width: 560px) {

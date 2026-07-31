@@ -20,7 +20,7 @@ defineProps({
 
 <style scoped>
 .footer {
-  padding: 2rem 1.25rem;
+  padding: 2rem 0;
   text-align: center;
 }
 
