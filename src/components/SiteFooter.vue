@@ -13,7 +13,7 @@ defineProps({
 
 <template>
   <footer class="footer">
-    <hr class="chart-divider" aria-hidden="true" />
+    <hr aria-hidden="true" />
     <p class="faint">&copy; {{ year }} {{ name }}</p>
   </footer>
 </template>
@@ -24,8 +24,8 @@ defineProps({
   text-align: center;
 }
 
-.chart-divider {
-  margin-bottom: 2rem;
+.footer hr {
+  margin-bottom: .5rem;
 }
 
 p {

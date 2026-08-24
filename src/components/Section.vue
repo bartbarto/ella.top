@@ -16,7 +16,6 @@ defineProps({
 </script>
 
 <template>
-  <hr v-if="showDivider" class="chart-divider" aria-hidden="true" />
   <section class="section" :aria-labelledby="id">
     <h2 :id="id">{{ title }}</h2>
     <slot />

@@ -51,12 +51,9 @@
   border-radius: 0;
 }
 
-.chart-divider {
-  height: 0;
-  border: none;
-  border-top: 1px dashed var(--chart-line-strong);
-  margin: 0;
-  box-shadow: none;
+hr {
+  border-bottom: 0;
+  border-top: 1px solid var(--chart-line-strong);
 }
 
 body {
