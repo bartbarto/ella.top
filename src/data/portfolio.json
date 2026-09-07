@@ -119,6 +119,16 @@
       ],
       "url": "https://github.com/bartbarto/ella.monster",
       "demo": "https://ella.monster"
+    },
+    {
+      "name": "SnapShare",
+      "description": "For my brothers wedding I made a simple photo sharing website where they can upload photos and share them with their friends and family. Deployed using Docker on my homelab.",
+      "tags": [
+        "Laravel",
+        "Filament",
+        "Docker"
+      ],
+      "demo": "https://snapshare.ella.top/upload/d820a549-4e5f-4127-a463-9697192493d4"
     }
   ],
   "experience": [

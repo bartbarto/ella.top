@@ -54,7 +54,7 @@ onMounted(() => {
         </div>
       </Section>
 
-      <Section id="projects-heading" title="Recent Projects" show-divider>
+      <Section id="projects-heading" class="print-break-before" title="Recent Projects" show-divider>
         <div class="grid">
           <ProjectCard v-for="project in projects" :key="project.url" :project="project" />
         </div>

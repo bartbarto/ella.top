@@ -19,7 +19,7 @@ defineProps({
       <SkillTag v-for="tag in project.tags" :label="tag" :key="tag" />
     </div>
     <div class="links">
-      <LinkPill :href="project.url" icon="link">Source</LinkPill>
+      <LinkPill v-if="project.url" :href="project.url" icon="link">Source</LinkPill>
       <LinkPill v-if="project.demo" :href="project.demo" icon="link">Live demo</LinkPill>
     </div>
   </Card>
