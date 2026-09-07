@@ -122,13 +122,23 @@
     },
     {
       "name": "SnapShare",
-      "description": "For my brothers wedding I made a simple photo sharing website where they can upload photos and share them with their friends and family. Deployed using Docker on my homelab.",
+      "description": "For my brothers wedding I made a simple photo sharing website where people can upload their photos and view uploaded photos from others. Deployed using Docker on my homelab.",
       "tags": [
         "Laravel",
         "Filament",
         "Docker"
       ],
       "demo": "https://snapshare.ella.top/upload/d820a549-4e5f-4127-a463-9697192493d4"
+    },
+    {
+      "name": "app.campz.fun",
+      "description": "my playground project for learning laravel, filament and other stuff I want to learn and play with. Currently used for a bunch of mini word games and image generators for a summer camp I am part of.",
+      "tags": [
+        "Laravel",
+        "Filament",
+        "Vue"
+      ],
+      "demo": "https://app.campz.fun"
     }
   ],
   "experience": [
