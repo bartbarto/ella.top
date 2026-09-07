@@ -38,16 +38,10 @@ onMounted(() => {
       <ProfileHeader :profile="profile" :links="links" />
       <Section id="skills-heading" title="Skills">
         <ul class="skills">
-          <li v-for="skill in skills" :key="skill">
-            <SkillTag :label="skill" />
+          <li v-for="skill in skills" :key="skill.name">
+            <SkillTag :label="skill.name" :context="skill.context" />
           </li>
         </ul>
-      </Section>
-
-      <Section id="projects-heading" title="Recent Projects" show-divider>
-        <div class="grid">
-          <ProjectCard v-for="project in projects" :key="project.url" :project="project" />
-        </div>
       </Section>
 
       <Section id="experience-heading" title="Experience" show-divider>
@@ -59,6 +53,14 @@ onMounted(() => {
           />
         </div>
       </Section>
+
+      <Section id="projects-heading" title="Recent Projects" show-divider>
+        <div class="grid">
+          <ProjectCard v-for="project in projects" :key="project.url" :project="project" />
+        </div>
+      </Section>
+
+      
       <SiteFooter :name="profile.name" :year="year" />
     </main>
 

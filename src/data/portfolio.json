@@ -11,7 +11,7 @@
       "Dutch"
     ],
     "title": "Front End Developer",
-    "bio": "I am a web developer with a love for building front-end interactive experiences and games.\n I enjoy experimenting with new technologies.\n\n AR/VR enthusiast.",
+    "bio": "I am a web developer with a love for building front-end interactive experiences and games.\n I enjoy experimenting with new technologies.\n\n In my free time I love tinkering with electronics, 3D printing, maintaining my homelab or playing VR Games.",
     "location": "Antwerp, Belgium",
     "avatar": "/me.png"
   },
@@ -28,18 +28,66 @@
     }
   ],
   "skills": [
-    "JavaScript",
-    "TypeScript",
-    "HTML",
-    "CSS",
-    "Vue",
-    "Node.js",
-    "Vite",
-    "PHP",
-    "MySQL",
-    "Laravel",
-    "Unity",
-    "Unreal Engine"
+    {
+      "name": "JavaScript",
+      "context": "Working knowledge and experience with modern JavaScript"
+    },
+    {
+      "name": "TypeScript",
+      "context": "Working knowledge and experience with TypeScript"
+    },
+    {
+      "name": "HTML",
+      "context": "All the latest HTML5 features and best practices"
+    },
+    {
+      "name": "CSS",
+      "context": "CSS has no secrets for me, and I have experience with various preprocessors although I tend to prefer vanilla CSS these days. I love challenging myself with complex animations and layouts without relying on javascript."
+    },
+    {
+      "name": "Git",
+      "context": "I have experience with Git version control, and I am comfortable in the command line. I am familiar with Github, bitbucket, gitea and Azure DevOps."
+    },
+    {
+      "name": "Vue",
+      "context": "I have made multiple projects using Vue 3 using the Composition API, with Pinia for state management."
+    },
+    {
+      "name": "Three.js",
+      "context": "I love using Three.js to create interactivity on websites, from simple animations to full-fledged 3D worlds."
+    },
+    {
+      "name": "Vite",
+      "context": "Working knowledge and experience with Vite"
+    },
+    {
+      "name": "PHP",
+      "context": "I have made multiple projects for clients using the latest PHP versions."
+    },
+    {
+      "name": "MySQL",
+      "context": "I usually use MySQL for my projects, but am also familiar with other databases such as Postgres and SQLite."
+    },
+    {
+      "name": "Laravel",
+      "context": "Whenever I need to build a backend for a project, I usually reach for Laravel in combination with Filament for quick and easy development."
+    },
+    {
+      "name": "Unity",
+      "context": "I have supported multiple clients with their unity projects, and making integrations between Unity and the web."
+    },
+    {
+      "name": "Electronics",
+      "context": "In my free time I love tinkering with electronics, or attempting to repair my broken devices."
+    },
+    {
+      "name": "3D Printing",
+      "context": "I have extensive experience with 3D printing, including designing and printing my own models."
+    },
+    {
+      "name": "Homelab",
+      "context": "I have a homelab at home, running my own services and applications using a mix of Docker and Proxmox. I have a system tracking wherever my cat is around the house."
+    }
   ],
   "projects": [
     {
@@ -52,6 +100,25 @@
       ],
       "url": "https://github.com/bartbarto/train-zimulator",
       "demo": "https://trainsim.ella.top"
+    },
+    {
+      "name": "Ella.top",
+      "description": "My personal website, built with Vue 3 and Vite. You can try printing the website to get a version formatted as a CV.",
+      "tags": [
+        "Vue",
+        "Vite"
+      ],
+      "url": "https://github.com/bartbarto/ella.top",
+      "demo": "https://ella.top"
+    },
+    {
+      "name": "Ella.monster",
+      "description": "When I got the domain name ella.monster I wanted to do something silly, so I made a 3D monster that follows your pointer. It is a simple project built with Three.js. (in supported browsers the favicon matches the movement of the monster)",
+      "tags": [
+        "Three.js"
+      ],
+      "url": "https://github.com/bartbarto/ella.monster",
+      "demo": "https://ella.monster"
     }
   ],
   "experience": [
