@@ -132,7 +132,7 @@
     },
     {
       "name": "app.campz.fun",
-      "description": "my playground project for learning laravel, filament and other stuff I want to learn and play with. Currently used for a bunch of mini word games and image generators for a summer camp I am part of.",
+      "description": "My playground project for learning laravel, filament and other stuff I want to learn and play with. Currently used for a bunch of mini word games and image generators for a summer camp I am part of.",
       "tags": [
         "Laravel",
         "Filament",

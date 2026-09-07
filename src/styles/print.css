@@ -24,7 +24,12 @@
 		background: none !important;
 	}
 
+	.section:has(.project) .grid {
+		grid-template-columns: 1fr;
+	}
+
 	.print-break-before {
 		break-before: page;
 	}
+
 }
