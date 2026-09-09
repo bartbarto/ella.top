@@ -1,5 +1,7 @@
 const SIZE = 64;
 const FRAME_MS = 200; // 5 fps
+const ANGLE_STEPS = 36;
+const ANIM_CYCLE = 6; // lcm of jitter (2) and flame (3)
 
 const C = {
   bg: '#212121',
@@ -23,6 +25,9 @@ const STARS = [
   { x: 50, y: 48 },
 ];
 
+const TWO_PI = Math.PI * 2;
+const ANGLE_STEP = TWO_PI / ANGLE_STEPS;
+
 export function startFaviconAnimation() {
   let link = document.querySelector("link[rel='icon']");
   if (!link) {
@@ -38,9 +43,12 @@ export function startFaviconAnimation() {
   const ctx = canvas.getContext('2d');
   ctx.imageSmoothingEnabled = false;
 
+  /** @type {(string | undefined)[]} */
+  const cache = new Array(ANGLE_STEPS * ANIM_CYCLE);
   let pointerX = window.innerWidth / 2;
   let pointerY = 0;
   let tick = 0;
+  let lastKey = -1;
 
   window.addEventListener(
     'pointermove',
@@ -52,17 +60,36 @@ export function startFaviconAnimation() {
   );
 
   const render = () => {
-    const angle = Math.atan2(
+    const raw = Math.atan2(
       pointerY - window.innerHeight / 2,
       pointerX - window.innerWidth / 2,
     );
-    paint(ctx, tick, angle);
-    link.href = canvas.toDataURL('image/png');
+    const angleIdx = angleIndex(raw);
+    const anim = tick % ANIM_CYCLE;
+    const key = angleIdx * ANIM_CYCLE + anim;
+
+    if (key !== lastKey) {
+      let href = cache[key];
+      if (!href) {
+        paint(ctx, tick, angleIdx * ANGLE_STEP);
+        href = canvas.toDataURL('image/png');
+        cache[key] = href;
+      }
+      link.href = href;
+      lastKey = key;
+    }
+
     tick += 1;
   };
 
   render();
   setInterval(render, FRAME_MS);
+}
+
+function angleIndex(angle) {
+  let normalized = angle % TWO_PI;
+  if (normalized < 0) normalized += TWO_PI;
+  return Math.round(normalized / ANGLE_STEP) % ANGLE_STEPS;
 }
 
 function paint(ctx, tick, angle) {
