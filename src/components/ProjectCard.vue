@@ -16,7 +16,7 @@ defineProps({
     <h3>{{ project.name }}</h3>
     <p class="muted pre-line body-text">{{ project.description }}</p>
     <div class="tags">
-      <SkillTag v-for="tag in project.tags" :label="tag" :key="tag" />
+      <SkillTag v-for="tag in project.tags" :label="tag" :key="tag" static />
     </div>
     <div class="links">
       <LinkPill v-if="project.url" :href="project.url" icon="link">Source</LinkPill>

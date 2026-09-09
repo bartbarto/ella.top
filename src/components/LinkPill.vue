@@ -10,6 +10,11 @@ defineProps({
     type: String,
     default: 'link',
   },
+  type: {
+    type: String,
+    default: 'url',
+    validator: (value) => ['url', 'javascript'].includes(value),
+  },
 });
 
 function linkText(href) {
@@ -20,9 +25,11 @@ function linkText(href) {
 <template>
   <a
     class="link-pill chart-panel chart-panel--link label"
+    :class="{ 'print-hide': type === 'javascript' }"
     :href="href"
-    target="_blank"
+    :target="type === 'javascript' ? null : '_blank'"
     :data-link="linkText(href)"
+    :data-type="type"
     rel="noopener noreferrer"
   >
     <Icon :name="icon" />

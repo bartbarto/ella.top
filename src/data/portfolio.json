@@ -25,6 +25,12 @@
       "label": "Email",
       "url": "mailto:hello@ella.top",
       "icon": "email"
+    },
+    {
+      "label": "Print",
+      "url": "javascript:window.print()",
+      "icon": "printer",
+      "type": "javascript"
     }
   ],
   "skills": [
@@ -129,16 +135,6 @@
         "Docker"
       ],
       "demo": "https://snapshare.ella.top/upload/d820a549-4e5f-4127-a463-9697192493d4"
-    },
-    {
-      "name": "app.campz.fun",
-      "description": "My playground project for learning laravel, filament and other stuff I want to learn and play with. Currently used for a bunch of mini word games and image generators for a summer camp I am part of.",
-      "tags": [
-        "Laravel",
-        "Filament",
-        "Vue"
-      ],
-      "demo": "https://app.campz.fun"
     }
   ],
   "experience": [
@@ -146,7 +142,7 @@
       "role": "Full Stack Developer",
       "company": "Artcore Society",
       "period": "2015 — Present",
-      "description": "Building and shipping web applications. Creating interactive websites and experiences for various clients. \n Consultancy for a number of Antwerp based agencies."
+      "description": "Building and shipping web applications using Laravel and Vue. Creating interactive websites and experiences for various clients using Three.js, Pixi.js and Phaser. \n During my time here I also did consultancy for a number of Antwerp based agencies."
     },
     {
       "role": ".NET Developer, Front End Developer",

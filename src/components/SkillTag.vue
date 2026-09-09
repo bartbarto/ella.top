@@ -10,6 +10,10 @@ const props = defineProps({
     type: String,
     default: '',
   },
+  static: {
+    type: Boolean,
+    default: false,
+  },
   respawnDelay: {
     type: Number,
     default: 500,
@@ -86,6 +90,10 @@ function scheduleRespawn(delay = props.respawnDelay) {
   }, delay);
 }
 
+function canHover() {
+  return window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+}
+
 function detachOutsideListeners() {
   document.removeEventListener('pointerdown', onOutsidePointer);
   document.removeEventListener('keydown', onKeydown);
@@ -125,31 +133,65 @@ function positionPopover() {
   originX.value = anchorX - left;
 }
 
-async function showPopover() {
+async function showPopover({ listenOutside = false } = {}) {
   open.value = true;
   closing.value = false;
   positioned.value = false;
   offsetX.value = 0;
   originX.value = 0;
-  document.addEventListener('pointerdown', onOutsidePointer);
+
+  if (listenOutside) {
+    document.addEventListener('pointerdown', onOutsidePointer);
+  }
   document.addEventListener('keydown', onKeydown);
 
   await nextTick();
   positionPopover();
   await nextTick();
   positioned.value = true;
-  popoverEl.value?.focus({ preventScroll: true });
 }
 
-function explodeTag(event) {
+function onPointerEnter() {
+  if (props.static || !props.context || !canHover()) return;
   if (hidden.value || exploding.value || open.value || closing.value) return;
+  showPopover();
+}
 
-  const target = event.currentTarget;
+function onPointerLeave() {
+  if (props.static || !props.context || !canHover()) return;
+  if (open.value || closing.value) closePopover();
+}
+
+function onFocus() {
+  if (props.static || !props.context) return;
+  if (hidden.value || exploding.value || open.value || closing.value) return;
+  showPopover();
+}
+
+function onBlur(event) {
+  if (props.static || !props.context) return;
+  if (rootEl.value?.contains(event.relatedTarget)) return;
+  if (open.value || closing.value) closePopover();
+}
+
+function explodeTag(event, { showContext = false } = {}) {
+  if (props.static || hidden.value || exploding.value) return;
+
+  if (open.value || closing.value) {
+    detachOutsideListeners();
+    open.value = false;
+    closing.value = false;
+    positioned.value = false;
+  }
+
+  const target = event?.currentTarget;
 
   if (prefersReducedMotion()) {
-    if (props.context) {
+    if (showContext && props.context) {
       hidden.value = true;
-      showPopover();
+      showPopover({ listenOutside: true });
+    } else {
+      scheduleRespawn(120);
     }
     return;
   }
@@ -164,16 +206,29 @@ function explodeTag(event) {
 
   window.setTimeout(() => {
     hidden.value = true;
-    target.blur();
+    target?.blur?.();
   }, 180);
 
-  if (props.context) {
+  if (showContext && props.context) {
     openTimer = window.setTimeout(() => {
-      showPopover();
+      showPopover({ listenOutside: true });
     }, 220);
   } else {
     scheduleRespawn();
   }
+}
+
+function onClick(event) {
+  if (props.static) return;
+
+  if (props.context && canHover()) {
+    // Hover already shows the popover; click is just the pop easter egg.
+    explodeTag(event, { showContext: false });
+    return;
+  }
+
+  // Touch / keyboard: keep explode + popover for skills with context.
+  explodeTag(event, { showContext: Boolean(props.context) });
 }
 
 function closePopover() {
@@ -205,7 +260,17 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <span ref="rootEl" class="skill-root">
+  <span v-if="static" class="skill-root">
+    <span class="tag chart-panel chart-panel--tag label">{{ label }}</span>
+  </span>
+
+  <span
+    v-else
+    ref="rootEl"
+    class="skill-root"
+    @pointerenter="onPointerEnter"
+    @pointerleave="onPointerLeave"
+  >
     <button
       type="button"
       class="skill-tag"
@@ -213,7 +278,9 @@ onUnmounted(() => {
       :aria-expanded="context ? open : undefined"
       :aria-haspopup="context ? 'dialog' : undefined"
       :aria-label="context ? `About ${label}` : `Pop ${label} skill`"
-      @click="explodeTag"
+      @click="onClick"
+      @focus="onFocus"
+      @blur="onBlur"
     >
       <span class="tag chart-panel chart-panel--tag label">{{ label }}</span>
 
@@ -226,22 +293,21 @@ onUnmounted(() => {
       />
     </button>
 
-    <button
+    <div
       v-if="open"
       ref="popoverEl"
-      type="button"
       class="skill-popover chart-panel"
       :class="[placement, { closing, positioned }]"
       :style="{
         '--offset-x': `${offsetX}px`,
         '--origin-x': `${originX}px`,
       }"
-      :aria-label="`${label}: ${context}. Click to dismiss`"
-      @click="closePopover"
+      role="tooltip"
+      :aria-label="`${label}: ${context}`"
     >
       <span class="popover-title label">{{ label }}</span>
       <span class="popover-body">{{ context }}</span>
-    </button>
+    </div>
   </span>
 </template>
 
@@ -300,11 +366,9 @@ onUnmounted(() => {
   color: inherit;
   font: inherit;
   text-align: left;
-  cursor: pointer;
   transform-origin: var(--origin-x, 50%) top;
   opacity: 0;
   animation: none;
-  -webkit-tap-highlight-color: transparent;
 }
 
 .skill-popover.positioned:not(.closing) {

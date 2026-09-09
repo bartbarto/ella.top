@@ -11,6 +11,10 @@ defineProps({
     required: true,
   },
 });
+
+const print = () => {
+  window.print();
+};
 </script>
 
 <template>
@@ -36,9 +40,9 @@ defineProps({
         <p class="bio muted pre-line body-text">{{ profile.bio }}</p>
 
         <nav class="links" aria-label="Social links">
-          <LinkPill v-for="link in links" :key="link.url" :href="link.url" :icon="link.icon">
+          <LinkPill v-for="link in links" :key="link.url" :href="link.url" :icon="link.icon" :type="link.type">
             {{ link.label }}
-          </LinkPill>
+          </LinkPill>          
         </nav>
       </div>
     </div>
