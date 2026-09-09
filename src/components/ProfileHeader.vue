@@ -72,6 +72,7 @@ defineProps({
   image-rendering: pixelated;
   image-rendering: crisp-edges;
   border: 1px solid var(--chart-line-strong);
+  overflow: hidden;
 }
 
 .avatar--marker {
