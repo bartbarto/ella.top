@@ -11,10 +11,12 @@ import ProjectCard from './components/ProjectCard.vue';
 import ExperienceCard from './components/ExperienceCard.vue';
 import SiteFooter from './components/SiteFooter.vue';
 import { useKonami } from './composables/useKonami.js';
+import { useFavicon } from './composables/useFavicon.js';
 
 const { meta, profile, links, skills, projects, experience } = portfolio;
 const year = new Date().getFullYear();
 const { active: uwu } = useKonami();
+useFavicon(uwu);
 
 watch(
   uwu,
