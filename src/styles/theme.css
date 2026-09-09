@@ -5,7 +5,8 @@
   --chart-bg-transparent: rgba(10, 22, 60, 0.5);
   --chart-ink: #eef1f6;
   --chart-ink-dim: rgba(238, 241, 246, 0.72);
-  --chart-ink-faint: rgba(238, 241, 246, 0.42);
+  /* 0.55 keeps ~5.4:1 contrast on --chart-bg (WCAG AA for text) */
+  --chart-ink-faint: rgba(238, 241, 246, 0.55);
   --chart-line: rgba(238, 241, 246, 0.22);
   --chart-line-strong: rgba(238, 241, 246, 0.55);
   --chart-line-dash: rgba(238, 241, 246, 0.18);
@@ -158,4 +159,47 @@ h3 {
   text-transform: none;
   letter-spacing: normal;
   line-height: 1.65;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  padding: 0.65rem 1rem;
+  background: var(--chart-ink);
+  color: var(--chart-bg);
+  font-family: var(--font-label);
+  font-size: 0.8125rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transform: translateY(-120%);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+  outline: 2px solid var(--chart-bg);
+  outline-offset: 2px;
+}
+
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--chart-ink);
+  outline-offset: 3px;
 }

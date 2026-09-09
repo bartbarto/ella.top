@@ -28,7 +28,7 @@
     },
     {
       "label": "Print",
-      "url": "javascript:window.print()",
+      "url": "#print",
       "icon": "printer",
       "type": "javascript"
     }

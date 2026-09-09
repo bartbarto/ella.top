@@ -1,12 +1,27 @@
 <script setup>
 import Card from './Card.vue';
 
-defineProps({
+const props = defineProps({
   item: {
     type: Object,
     required: true,
   },
 });
+
+/** Map display periods like "2015 — Present" to an ISO 8601 interval. */
+function periodDatetime(period) {
+  if (!period) return undefined;
+  const parts = period.split(/\s*[—–-]\s*/).map((part) => part.trim());
+  if (parts.length !== 2) return undefined;
+
+  const [start, end] = parts;
+  if (!/^\d{4}$/.test(start)) return undefined;
+  if (/present/i.test(end)) return `${start}/..`;
+  if (/^\d{4}$/.test(end)) return `${start}/${end}`;
+  return undefined;
+}
+
+const datetime = periodDatetime(props.item.period);
 </script>
 
 <template>
@@ -15,9 +30,11 @@ defineProps({
       <div>
         <h3>{{ item.role }}</h3>
         <p class="company label">{{ item.company }}</p>
-        <p v-if="item.type" class="type faint label">{{ item.type }}</p>
+        <p v-if="item.type" class="type faint label">
+          <span class="visually-hidden">Employment type: </span>{{ item.type }}
+        </p>
       </div>
-      <time class="faint label">{{ item.period }}</time>
+      <time class="faint label" :datetime="datetime">{{ item.period }}</time>
     </div>
     <p class="muted pre-line body-text">{{ item.description }}</p>
   </Card>

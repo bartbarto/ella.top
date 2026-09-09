@@ -11,10 +11,6 @@ defineProps({
     required: true,
   },
 });
-
-const print = () => {
-  window.print();
-};
 </script>
 
 <template>
@@ -24,25 +20,34 @@ const print = () => {
         v-if="profile.avatar"
         class="avatar chart-panel"
         :src="profile.avatar"
-        :alt="profile.name"
+        :alt="`Portrait of ${profile.name}`"
+        width="88"
+        height="88"
       />
-      <div v-else class="avatar avatar--marker chart-panel" aria-hidden="true">
-      </div>
+      <div v-else class="avatar avatar--marker chart-panel" aria-hidden="true" />
 
       <div class="profile-body">
         <p class="eyebrow">{{ profile.location }}</p>
         <h1>{{ profile.name }}</h1>
-        <p v-if="profile.pronouns" class="meta faint label">{{ profile.pronouns }}</p>
+        <p v-if="profile.pronouns" class="meta faint label">
+          <span class="visually-hidden">Pronouns: </span>{{ profile.pronouns }}
+        </p>
         <p class="title label">{{ profile.title }}</p>
         <p v-if="profile.languages?.length" class="meta faint label">
-          {{ profile.languages.join(' · ') }}
+          <span class="visually-hidden">Languages: </span>{{ profile.languages.join(' · ') }}
         </p>
         <p class="bio muted pre-line body-text">{{ profile.bio }}</p>
 
-        <nav class="links" aria-label="Social links">
-          <LinkPill v-for="link in links" :key="link.url" :href="link.url" :icon="link.icon" :type="link.type">
+        <nav class="links" aria-label="Profile links">
+          <LinkPill
+            v-for="link in links"
+            :key="link.url"
+            :href="link.url"
+            :icon="link.icon"
+            :type="link.type"
+          >
             {{ link.label }}
-          </LinkPill>          
+          </LinkPill>
         </nav>
       </div>
     </div>
@@ -57,11 +62,6 @@ const print = () => {
 .profile-inner {
   display: flex;
   gap: 1.75rem;
-  /* align-items: flex-start; */
-
-  /* flex-direction: column;
-    align-items: center;
-    text-align: center; */
 }
 
 .avatar {
@@ -132,7 +132,6 @@ const print = () => {
   flex-wrap: wrap;
   gap: 0.5rem;
   margin-top: 1.35rem;
-  /* justify-content: center; */
 }
 
 @media (max-width: 560px) {

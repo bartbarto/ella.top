@@ -32,6 +32,10 @@
 		display: none !important;
 	}
 
+	.skip-link {
+		display: none !important;
+	}
+
 	.print-break-before {
 		break-before: page;
 	}

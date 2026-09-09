@@ -1,5 +1,5 @@
 <script setup>
-import { nextTick, onUnmounted, ref } from 'vue';
+import { computed, nextTick, onUnmounted, ref, useId } from 'vue';
 
 const props = defineProps({
   label: {
@@ -32,6 +32,9 @@ const particles = ref([]);
 const placement = ref('below');
 const offsetX = ref(0);
 const originX = ref(0);
+
+const popoverId = useId();
+const titleId = computed(() => `${popoverId}-title`);
 
 let respawnTimer = null;
 let cleanupTimer = null;
@@ -275,14 +278,16 @@ onUnmounted(() => {
       type="button"
       class="skill-tag"
       :class="{ exploding, hidden, returning }"
+      :tabindex="hidden ? -1 : undefined"
+      :aria-hidden="hidden ? 'true' : undefined"
       :aria-expanded="context ? open : undefined"
-      :aria-haspopup="context ? 'dialog' : undefined"
-      :aria-label="context ? `About ${label}` : `Pop ${label} skill`"
+      :aria-controls="context ? popoverId : undefined"
       @click="onClick"
       @focus="onFocus"
       @blur="onBlur"
     >
       <span class="tag chart-panel chart-panel--tag label">{{ label }}</span>
+      <span v-if="context" class="visually-hidden">, more information available</span>
 
       <span
         v-for="particle in particles"
@@ -295,6 +300,7 @@ onUnmounted(() => {
 
     <div
       v-if="open"
+      :id="popoverId"
       ref="popoverEl"
       class="skill-popover chart-panel"
       :class="[placement, { closing, positioned }]"
@@ -302,10 +308,10 @@ onUnmounted(() => {
         '--offset-x': `${offsetX}px`,
         '--origin-x': `${originX}px`,
       }"
-      role="tooltip"
-      :aria-label="`${label}: ${context}`"
+      role="region"
+      :aria-labelledby="titleId"
     >
-      <span class="popover-title label">{{ label }}</span>
+      <span :id="titleId" class="popover-title label">{{ label }}</span>
       <span class="popover-body">{{ context }}</span>
     </div>
   </span>
@@ -327,6 +333,12 @@ onUnmounted(() => {
   font: inherit;
   color: inherit;
   -webkit-tap-highlight-color: transparent;
+  border-radius: 0;
+}
+
+.skill-tag:focus-visible {
+  outline: 2px solid var(--chart-ink);
+  outline-offset: 3px;
 }
 
 .tag {
@@ -490,6 +502,12 @@ onUnmounted(() => {
   .skill-popover.closing {
     animation: none;
     opacity: 0;
+  }
+
+  .skill-tag.exploding .tag,
+  .skill-tag.returning .tag,
+  .particle {
+    animation: none;
   }
 }
 </style>

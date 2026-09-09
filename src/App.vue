@@ -33,8 +33,9 @@ onMounted(() => {
   <ChartFrame />
 
   <div class="page">
-    
-    <main class="container">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
+    <main id="main-content" class="container" tabindex="-1">
       <ProfileHeader :profile="profile" :links="links" />
       <Section id="skills-heading" title="Skills">
         <ul class="skills">
@@ -56,14 +57,14 @@ onMounted(() => {
 
       <Section id="projects-heading" class="print-break-before" title="Recent Projects" show-divider>
         <div class="grid">
-          <ProjectCard v-for="project in projects" :key="project.url" :project="project" />
+          <ProjectCard v-for="project in projects" :key="project.url || project.demo" :project="project" />
         </div>
       </Section>
-
-      
-      <SiteFooter :name="profile.name" :year="year" />
     </main>
 
+    <div class="container">
+      <SiteFooter :name="profile.name" :year="year" />
+    </div>
   </div>
 </template>
 

@@ -15,13 +15,29 @@ defineProps({
   <Card class="project">
     <h3>{{ project.name }}</h3>
     <p class="muted pre-line body-text">{{ project.description }}</p>
-    <div class="tags">
-      <SkillTag v-for="tag in project.tags" :label="tag" :key="tag" static />
-    </div>
-    <div class="links">
-      <LinkPill v-if="project.url" :href="project.url" icon="link">Source</LinkPill>
-      <LinkPill v-if="project.demo" :href="project.demo" icon="link">Live demo</LinkPill>
-    </div>
+    <ul v-if="project.tags?.length" class="tags" :aria-label="`${project.name} technologies`">
+      <li v-for="tag in project.tags" :key="tag">
+        <SkillTag :label="tag" static />
+      </li>
+    </ul>
+    <nav v-if="project.url || project.demo" class="links" :aria-label="`${project.name} links`">
+      <LinkPill
+        v-if="project.url"
+        :href="project.url"
+        icon="link"
+        :aria-label="`Source code for ${project.name}`"
+      >
+        Source
+      </LinkPill>
+      <LinkPill
+        v-if="project.demo"
+        :href="project.demo"
+        icon="link"
+        :aria-label="`Live demo of ${project.name}`"
+      >
+        Live demo
+      </LinkPill>
+    </nav>
   </Card>
 </template>
 
