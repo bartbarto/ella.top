@@ -47,8 +47,8 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <Starfield />
-  <ChartFrame />
+  <Starfield class="print-hide" />
+  <ChartFrame class="print-hide" />
   <Confetti :active="uwu" />
 
   <div class="page">
@@ -99,6 +99,14 @@ onUnmounted(() => {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 0.65rem 1.25rem;
+  }
+
+  .skills > li {
+    /* Inner block so break-inside works even when the parent is a grid (Safari) */
+    display: block;
+    break-inside: avoid;
+    page-break-inside: avoid;
+    -webkit-column-break-inside: avoid;
   }
 }
 

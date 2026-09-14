@@ -135,7 +135,7 @@ defineProps({
   margin-top: 1.35rem;
 }
 
-@media (max-width: 560px) {
+@media screen and (max-width: 560px) {
   .profile-inner {
     flex-direction: column;
     align-items: center;

@@ -1,4 +1,83 @@
+/*
+  Cross-browser print sizing (Chrome + Safari):
+  - Do NOT set a fixed/min body or container width larger than the page box —
+    Chrome shrink-to-fit scales the whole document down (Bootstrap #28085).
+  - Do NOT lock the viewport meta to a CSS pixel width on print —
+    Safari treats that as a layout viewport and zooms content up on wide screens.
+  - Let @page define the sheet; use width:auto / max-width:none / min-width:unset
+    so content fills the page box (Bootstrap v5 approach, issue #14868).
+*/
+
+@page {
+	size: A4;
+	margin: 10mm;
+}
+
 @media print {
+
+	html {
+		font-size: 10pt !important;
+		-webkit-text-size-adjust: 100%;
+		text-size-adjust: 100%;
+	}
+
+	html,
+	body,
+	#app,
+	.page,
+	.container {
+		width: auto !important;
+		min-width: 0 !important;
+		max-width: none !important;
+		margin: 0 !important;
+	}
+
+	body {
+		padding: 0 !important;
+		font-size: 11pt !important;
+		background: #ffffff !important;
+	}
+
+	#app,
+	.page {
+		display: block;
+		min-height: 0;
+	}
+
+	.container {
+		padding-left: 0 !important;
+		padding-right: 0 !important;
+	}
+
+	/* 100vw / fixed layers expand scroll width and re-trigger shrink-to-fit */
+	.page::before,
+	.page:before,
+	.starfield,
+	.chart-frame,
+	.confetti {
+		content: none !important;
+		display: none !important;
+		width: 0 !important;
+		height: 0 !important;
+		border: none !important;
+	}
+
+	:root {
+		--max-width: none;
+		--chart-bg: #ffffff;
+		--chart-bg-deep: #ffffff;
+		--chart-ink: #000000;
+		--chart-ink-dim: #000000;
+		--chart-ink-faint: #000000;
+		--chart-line: #000000;
+		--chart-line-strong: #000000;
+		--chart-line-dash: #000000;
+	}
+
+	h1,
+	html.uwu h1 {
+		font-size: 20pt !important;
+	}
 
 	html.uwu,
 	html.uwu body,
@@ -31,32 +110,35 @@
 		content: none !important;
 	}
 
-	:root {
-		--chart-bg: #ffffff;
-		--chart-bg-deep: #ffffff;
-		--chart-ink: #000000;
-		--chart-ink-dim: #000000;
-		--chart-ink-faint: #000000;
-		--chart-line: #000000;
-		--chart-line-strong: #000000;
-		--chart-line-dash: #000000;
-	}
-
 	.link-pill {
 		font-size: 0 !important;
 	}
 
 	.link-pill::after {
 		content: attr(data-link);
-		font-size: 0.75rem !important;
+		font-size: 8.25pt !important;
 	}
 
 	.chart-panel {
 		background: none !important;
+		backdrop-filter: none !important;
+		box-shadow: none !important;
 	}
 
+	/* Safari ignores break-inside on grid/flex children — stack as blocks instead */
 	.section:has(.project) .grid {
-		grid-template-columns: 1fr;
+		display: block;
+	}
+
+	.section:has(.project) .grid > * + * {
+		margin-top: 0.85rem;
+	}
+
+	.project {
+		display: block;
+		break-inside: avoid;
+		page-break-inside: avoid;
+		-webkit-column-break-inside: avoid;
 	}
 
 	.print-hide {

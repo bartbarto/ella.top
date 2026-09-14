@@ -72,7 +72,7 @@ p.body-text {
   font-size: 0.9375rem;
 }
 
-@media (max-width: 560px) {
+@media screen and (max-width: 560px) {
   .header {
     flex-direction: column;
   }
