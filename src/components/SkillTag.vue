@@ -299,17 +299,19 @@ onUnmounted(() => {
     </button>
 
     <div
-      v-if="open"
+      v-if="context"
       :id="popoverId"
       ref="popoverEl"
       class="skill-popover chart-panel"
-      :class="[placement, { closing, positioned }]"
+      :class="[placement, { open, closing, positioned }]"
       :style="{
         '--offset-x': `${offsetX}px`,
         '--origin-x': `${originX}px`,
       }"
       role="region"
       :aria-labelledby="titleId"
+      :aria-hidden="open ? undefined : 'true'"
+      :inert="!open"
     >
       <span :id="titleId" class="popover-title label">{{ label }}</span>
       <span class="popover-body">{{ context }}</span>
@@ -367,7 +369,7 @@ onUnmounted(() => {
   position: absolute;
   left: var(--offset-x, 0px);
   z-index: 20;
-  display: flex;
+  display: none;
   flex-direction: column;
   gap: 0.45rem;
   width: max-content;
@@ -383,7 +385,11 @@ onUnmounted(() => {
   animation: none;
 }
 
-.skill-popover.positioned:not(.closing) {
+.skill-popover.open {
+  display: flex;
+}
+
+.skill-popover.open.positioned:not(.closing) {
   animation: popover-in 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
@@ -494,7 +500,7 @@ onUnmounted(() => {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .skill-popover.positioned:not(.closing) {
+  .skill-popover.open.positioned:not(.closing) {
     animation: none;
     opacity: 1;
   }
@@ -508,6 +514,40 @@ onUnmounted(() => {
   .skill-tag.returning .tag,
   .particle {
     animation: none;
+  }
+}
+
+@media print {
+  .skill-root:has(.skill-popover) {
+    display: grid;
+    grid-template-columns: minmax(5.5rem, 7.5rem) 1fr;
+    gap: 0.35rem 0.75rem;
+    align-items: start;
+  }
+
+  .skill-tag,
+  .skill-popover,
+  .skill-popover.open {
+    display: contents;
+  }
+
+  .particle,
+  .visually-hidden,
+  .popover-title {
+    display: none !important;
+  }
+
+  .skill-root:has(.skill-popover) .tag,
+  .skill-tag.hidden .tag {
+    padding: 0;
+    letter-spacing: 0.18em;
+    opacity: 1;
+    transform: none;
+  }
+
+  .popover-body {
+    font-size: 0.75rem;
+    line-height: 1.4;
   }
 }
 </style>

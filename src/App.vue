@@ -64,7 +64,7 @@ onUnmounted(() => {
         </ul>
       </Section>
 
-      <Section id="experience-heading" :title="uwu ? 'Expewience' : 'Experience'" show-divider>
+      <Section id="experience-heading" class="print-break-before" :title="uwu ? 'Expewience' : 'Experience'" show-divider>
         <div class="stack">
           <ExperienceCard
             v-for="item in experience"
@@ -92,6 +92,14 @@ onUnmounted(() => {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
+}
+
+@media print {
+  .skills {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.65rem 1.25rem;
+  }
 }
 
 .grid {
