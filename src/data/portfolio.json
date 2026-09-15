@@ -23,7 +23,7 @@
     },
     {
       "label": "Email",
-      "url": "mailto:hello@ella.top",
+      "url": "mailto:ella@ella.top",
       "icon": "email"
     },
     {
@@ -150,6 +150,12 @@
       "type": "Consultancy, Full Time",
       "period": "2022 — 2024",
       "description": "In my initial role at Elia, I was responsible for updating their matterport 3d scans, scanning new buildings and integrating interactive elements into the scans. Later on, I was part of the IoT team where I built interactive dashboards and websites for visualizing and controlling IoT devices."
+    }
+  ],
+  "education": [
+    {
+      "role": "Bachelor Multimedia & Communication Technologies",
+      "type": "Specialization in Web Development"
     }
   ]
 }

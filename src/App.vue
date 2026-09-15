@@ -13,7 +13,7 @@ import SiteFooter from './components/SiteFooter.vue';
 import { useKonami } from './composables/useKonami.js';
 import { useFavicon } from './composables/useFavicon.js';
 
-const { meta, profile, links, skills, projects, experience } = portfolio;
+const { meta, profile, links, skills, projects, experience, education } = portfolio;
 const year = new Date().getFullYear();
 const { active: uwu } = useKonami();
 useFavicon(uwu);
@@ -69,6 +69,21 @@ onUnmounted(() => {
           <ExperienceCard
             v-for="item in experience"
             :key="item.company + item.period"
+            :item="item"
+          />
+        </div>
+      </Section>
+
+      <Section
+        v-if="education?.length"
+        id="education-heading"
+        :title="uwu ? 'Educatiown' : 'Education'"
+        show-divider
+      >
+        <div class="stack">
+          <ExperienceCard
+            v-for="item in education"
+            :key="item.role + (item.period || '')"
             :item="item"
           />
         </div>

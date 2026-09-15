@@ -29,14 +29,14 @@ const datetime = periodDatetime(props.item.period);
     <div class="header">
       <div>
         <h3>{{ item.role }}</h3>
-        <p class="company label">{{ item.company }}</p>
+        <p v-if="item.company" class="company label">{{ item.company }}</p>
         <p v-if="item.type" class="type faint label">
-          <span class="visually-hidden">Employment type: </span>{{ item.type }}
+          <span class="visually-hidden">{{ item.company ? 'Employment type: ' : 'Details: ' }}</span>{{ item.type }}
         </p>
       </div>
-      <time class="faint label" :datetime="datetime">{{ item.period }}</time>
+      <time v-if="item.period" class="faint label" :datetime="datetime">{{ item.period }}</time>
     </div>
-    <p class="muted pre-line body-text">{{ item.description }}</p>
+    <p v-if="item.description" class="muted pre-line body-text">{{ item.description }}</p>
   </Card>
 </template>
 
@@ -46,6 +46,9 @@ const datetime = periodDatetime(props.item.period);
   justify-content: space-between;
   align-items: flex-start;
   gap: 1rem;
+}
+
+.header:has(+ .body-text) {
   margin-bottom: 0.85rem;
   padding-bottom: 0.75rem;
   border-bottom: 1px dashed var(--chart-line);
