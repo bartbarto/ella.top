@@ -1,4 +1,4 @@
-import { onMounted, onUnmounted, toValue, watch } from 'vue';
+import { onMounted, onUnmounted } from 'vue';
 
 const SIZE = 64;
 const FRAME_MS = 200; // 5 fps
@@ -6,38 +6,20 @@ const ANGLE_STEPS = 36;
 const ANIM_CYCLE = 6; // lcm of jitter (2) and flame (3)
 
 const COLORS = {
-  default: {
-    bg: '#212121',
-    ink: '#000000',
-    body: '#cfd8dc',
-    shade: '#90a4ae',
-    window: '#03a9f4',
-    windowHi: '#e1f5fe',
-    orange: '#ff6e00',
-    orangeDeep: '#e65100',
-    band: '#5d4037',
-    flameRed: '#dd2c00',
-    flameOrange: '#ff6e40',
-    flameYellow: '#ffd740',
-    flameWhite: '#fff8e1',
-    star: '#ffffff',
-  },
-  uwu: {
-    bg: '#ffe4f3',
-    ink: '#1a0b14',
-    body: '#fff8fc',
-    shade: '#ffb8de',
-    window: '#4cc9f0',
-    windowHi: '#e8fbff',
-    orange: '#ff6bcb',
-    orangeDeep: '#c73d8a',
-    band: '#c77dff',
-    flameRed: '#ff6bcb',
-    flameOrange: '#ffd166',
-    flameYellow: '#06d6a0',
-    flameWhite: '#ffffff',
-    star: '#c77dff',
-  },
+  bg: '#212121',
+  ink: '#000000',
+  body: '#cfd8dc',
+  shade: '#90a4ae',
+  window: '#03a9f4',
+  windowHi: '#e1f5fe',
+  orange: '#ff6e00',
+  orangeDeep: '#e65100',
+  band: '#5d4037',
+  flameRed: '#dd2c00',
+  flameOrange: '#ff6e40',
+  flameYellow: '#ffd740',
+  flameWhite: '#fff8e1',
+  star: '#ffffff',
 };
 
 const STARS = [
@@ -48,17 +30,13 @@ const STARS = [
 const TWO_PI = Math.PI * 2;
 const ANGLE_STEP = TWO_PI / ANGLE_STEPS;
 
-/**
- * Pointer-following rocket favicon; swaps palette when uwu is on.
- * @param {import('vue').MaybeRefOrGetter<boolean>} uwu
- */
-export function useFavicon(uwu) {
+/** Pointer-following rocket favicon. */
+export function useFavicon() {
   let link;
   let canvas;
   let ctx;
   /** @type {(string | undefined)[]} */
   let cache;
-  let colors = COLORS.default;
   let pointerX = 0;
   let pointerY = 0;
   let tick = 0;
@@ -68,16 +46,6 @@ export function useFavicon(uwu) {
   function onPointerMove(event) {
     pointerX = event.clientX;
     pointerY = event.clientY;
-  }
-
-  function clearCache() {
-    cache = new Array(ANGLE_STEPS * ANIM_CYCLE);
-    lastKey = -1;
-  }
-
-  function setPalette(isUwu) {
-    colors = isUwu ? COLORS.uwu : COLORS.default;
-    clearCache();
   }
 
   function render() {
@@ -92,7 +60,7 @@ export function useFavicon(uwu) {
     if (key !== lastKey) {
       let href = cache[key];
       if (!href) {
-        paint(ctx, tick, angleIdx * ANGLE_STEP, colors);
+        paint(ctx, tick, angleIdx * ANGLE_STEP, COLORS);
         href = canvas.toDataURL('image/png');
         cache[key] = href;
       }
@@ -120,21 +88,13 @@ export function useFavicon(uwu) {
 
     pointerX = window.innerWidth / 2;
     pointerY = 0;
-    setPalette(toValue(uwu));
+    cache = new Array(ANGLE_STEPS * ANIM_CYCLE);
+    lastKey = -1;
 
     window.addEventListener('pointermove', onPointerMove, { passive: true });
     render();
     intervalId = window.setInterval(render, FRAME_MS);
   });
-
-  watch(
-    () => toValue(uwu),
-    (on) => {
-      if (!ctx) return;
-      setPalette(on);
-      render();
-    },
-  );
 
   onUnmounted(() => {
     window.clearInterval(intervalId);

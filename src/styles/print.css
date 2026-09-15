@@ -53,8 +53,7 @@
 	.page::before,
 	.page:before,
 	.starfield,
-	.chart-frame,
-	.confetti {
+	.chart-frame {
 		content: none !important;
 		display: none !important;
 		width: 0 !important;
@@ -74,40 +73,8 @@
 		--chart-line-dash: #000000;
 	}
 
-	h1,
-	html.uwu h1 {
+	h1 {
 		font-size: 20pt !important;
-	}
-
-	html.uwu,
-	html.uwu body,
-	html.uwu body::before,
-	html.uwu .page:before,
-	html.uwu h1,
-	html.uwu h1::after {
-		animation: none !important;
-		filter: none !important;
-	}
-
-	html.uwu body,
-	html.uwu body::before {
-		background: #ffffff !important;
-	}
-
-	html.uwu body::before {
-		content: none !important;
-	}
-
-	html.uwu h1 {
-		background: none !important;
-		color: #000000 !important;
-		-webkit-text-fill-color: #000000 !important;
-	}
-
-	html.uwu h1::after,
-	html.uwu h2::before,
-	html.uwu h2::after {
-		content: none !important;
 	}
 
 	.link-pill {
