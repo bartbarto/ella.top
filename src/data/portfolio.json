@@ -142,7 +142,7 @@
       "role": "Full Stack Developer",
       "company": "Artcore Society",
       "period": "2015 — Present",
-      "description": "Building and shipping web applications using Laravel and Vue. Creating interactive websites and experiences for various clients using Three.js, Pixi.js and Phaser. \n During my time here I also did consultancy for a number of Antwerp based agencies."
+      "description": "Building and shipping web applications using Laravel and Vue. Creating interactive websites and experiences using Three.js, Pixi.js and Phaser. \n During my time here I also did consultancy for a number of Antwerp based agencies.\n \n Working for clients like HP, KBC, Beflius, Unilin, Baloise, Toyota MH, Dr Oetker, LU "
     },
     {
       "role": ".NET Developer, Front End Developer",
@@ -150,6 +150,34 @@
       "type": "Consultancy, Full Time",
       "period": "2022 — 2024",
       "description": "In my initial role at Elia, I was responsible for updating their matterport 3d scans, scanning new buildings and integrating interactive elements into the scans. Later on, I was part of the IoT team where I built interactive dashboards and websites for visualizing and controlling IoT devices."
+    },
+    {
+      "role": "Front End Developer",
+      "company": "Internet Architects (now IO)",
+      "type": "Consultancy, Full Time",
+      "period": "2016, 2017, 2018, 2019",
+      "description": "Front end development and interactive data visualisations on a number of projects for clients such as Alpro, Carrefour, Port of Antwerp and the European Commission."
+    },
+    {
+      "role": "Front End Developer",
+      "company": "These Days (now VML)",
+      "type": "Consultancy, Full Time",
+      "period": "2015, 2016",
+      "description": "Front end development on a number of projects for clients such as Lotto and Mazda"
+    },
+    {
+      "role": "Front End Developer",
+      "company": "SEVEN productions",
+      "type": "Consultancy, Full Time",
+      "period": "2016",
+      "description": "Creating advertising banners for Netflix and Warner Bros"
+    },
+    {
+      "role": "Full Stack Developer",
+      "company": "Design is Dead",
+      "type": "Consultancy, Full Time",
+      "period": "aug 2015",
+      "description": "A contest website for Roland DG where users could upload videos and they were automatically mirrored to youtube."
     }
   ],
   "education": [
