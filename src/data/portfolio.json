@@ -142,7 +142,7 @@
       "role": "Full Stack Developer",
       "company": "Artcore Society",
       "period": "2015 — Present",
-      "description": "Building and shipping web applications using Laravel and Vue. Creating interactive websites and experiences using Three.js, Pixi.js and Phaser. \n During my time here I also did consultancy for a number of Antwerp based agencies.\n \n Working for clients like HP, KBC, Beflius, Unilin, Baloise, Toyota MH, Dr Oetker, LU "
+      "description": "Building and shipping web applications using Laravel and Vue. Creating interactive websites and experiences using Three.js, Pixi.js and Phaser. \n During my time here I also did consultancy for a number of Antwerp based agencies.\n \n Working for clients like HP, KBC, Belfius, Unilin, Baloise, Toyota MH, Dr Oetker and LU."
     },
     {
       "role": ".NET Developer, Front End Developer",
@@ -163,21 +163,21 @@
       "company": "These Days (now VML)",
       "type": "Consultancy, Full Time",
       "period": "2015, 2016",
-      "description": "Front end development on a number of projects for clients such as Lotto and Mazda"
+      "description": "Front end development on a number of projects for clients such as Lotto and Mazda."
     },
     {
       "role": "Front End Developer",
       "company": "SEVEN productions",
       "type": "Consultancy, Full Time",
       "period": "2016",
-      "description": "Creating advertising banners for Netflix and Warner Bros"
+      "description": "Creating advertising banners for Netflix and Warner Bros."
     },
     {
       "role": "Full Stack Developer",
       "company": "Design is Dead",
       "type": "Consultancy, Full Time",
       "period": "aug 2015",
-      "description": "A contest website for Roland DG where users could upload videos and they were automatically mirrored to youtube."
+      "description": "A contest website for Roland DG where users could upload videos and they were automatically mirrored to YouTube."
     }
   ],
   "education": [
